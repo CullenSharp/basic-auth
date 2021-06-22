@@ -21,13 +21,18 @@ let sequelize = new Sequelize(DATABASE_URL, NODE_ENV === 'production' ? {
   },
 } : {});
 
-const user = userModel(sequelize, DataTypes);
+const users = userModel(sequelize, DataTypes);
 
-user.beforeCreate(async (user, options) => {
-  user.password = await bcrypt.hash(user.password);
+// this might be the problem here. maybe it goes someplace else?
+// this hook is confirmed the problem
+users.beforeCreate(async (users, options) => {
+  console.log('hello');
+  console.log(users.password);
+  console.log(users);
+  users.password = await bcrypt.hash(users.password);
 });
 
 module.exports = {
   db: sequelize,
-  user,
+  users: users,
 };
