@@ -2,7 +2,6 @@
 
 // 3rd party resources
 const { Sequelize, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
 
 // models
 const userModel = require('./user');
@@ -22,15 +21,6 @@ let sequelize = new Sequelize(DATABASE_URL, NODE_ENV === 'production' ? {
 } : {});
 
 const users = userModel(sequelize, DataTypes);
-
-// this might be the problem here. maybe it goes someplace else?
-// this hook is confirmed the problem
-users.beforeCreate(async (users, options) => {
-  console.log('hello');
-  console.log(users.password);
-  console.log(users);
-  users.password = await bcrypt.hash(users.password);
-});
 
 module.exports = {
   db: sequelize,
