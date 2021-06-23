@@ -8,7 +8,6 @@ const base64 = require('base-64');
 const { users } = require('./models/index'); //check export from index.js
 
 module.exports = async (req, res, next) => {
-  console.log(req.headers.authorization);
   let basicHeaderParts = req.headers.authorization.split(' ');
   let encodedString = basicHeaderParts.pop();
   let decodedString = base64.decode(encodedString);
