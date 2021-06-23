@@ -6,6 +6,8 @@ June 23, 2021
 
 A RESTful api that supports basic authentication
 
+[https://cs-basic-auth.herokuapp.com/](https://cs-basic-auth.herokuapp.com/)
+
 ## Start up
 
 Clone the repo from github, and install the necessary dependencies.
